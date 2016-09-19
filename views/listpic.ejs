@@ -1,0 +1,20 @@
+
+
+
+
+<% include header.ejs %>
+
+
+
+
+<div class="container">
+    <ol>
+        <% for(var x in picList ){%>
+        <li>
+           <img src="<%=picList[x].imagePath%>" height="200" width="150"/>
+        </li>
+        <%}%>
+    </ol>
+
+</div>
+<% include footer.ejs %>

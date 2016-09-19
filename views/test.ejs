@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor</title>
+    <link rel="stylesheet" href="/bower_components/wangEditor/dist/css/wangEditor.min.css">
+    <!--<link href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+
+    <style type="text/css">
+        #div1 {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="div1">-->
+    <!--<p>请输入内容...</p>-->
+<!--</div>-->
+<br>
+<div ng-app="myApp" ng-controller="myCtrl">
+    名字: <input ng-model="name">
+<br>
+    {{name}}
+
+<div  id="textarea1" style="height:400px;">
+    <p>请输入内容</p><p>&lt;script&gt;&lt;/script&gt;</p>
+</div>
+<button ng-click="getContent()">获取内容</button>
+    <button ng-click="addContent()">add内容</button>
+<hr>
+    {{name}}
+    <hr>
+</div>
+<script type="text/javascript" src="/bower_components/wangEditor/dist/js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/bower_components/wangEditor/dist/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+
+//    $(function () {
+////        var editor = new wangEditor('div1');
+////        editor.create();
+//
+//        var editor1 = new wangEditor('textarea1');
+//        editor1.create();
+//
+//
+//
+//
+//        $('#btn1').click(function () {
+//            // 获取编辑器区域完整html代码
+//            var html = editor1.$txt.html();
+//
+//            console.log('11:'+html);
+//            // 获取编辑器纯文本内容
+//            var text = editor1.$txt.text();
+//            console.log('22:'+text);
+//
+//        });
+//
+//    });
+
+var editor1 = new wangEditor('textarea1');
+
+// 上传图片（举例）
+editor1.config.uploadImgUrl = '/picture/upload';
+editor1.config.uploadImgFileName = 'myFileName'
+//editor1.config.customUpload = true;
+// 配置自定义参数（举例）
+editor1.config.uploadParams = {
+//    token: 'abcdefg',
+//    user: 'wangfupeng1988'
+};
+
+// 设置 headers（举例）
+editor1.config.uploadHeaders = {
+//    'Accept' : 'text/x-json'
+};
+
+// 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
+editor1.config.hideLinkImg = false;
+
+// 图片上传的回调
+editor1.config.uploadImage= {
+    onUpload: function(file) {
+        // 开始上传需要执行的逻辑
+        // file是需要上传的文件
+    },
+    onProgress: function(progress) {
+        // 上传进度，progress是一个 0~1 的参数
+        editor1.setProgress(progress);
+    },
+    onSucess: function(info) {
+        //上传成功，info是服务器传回的参数，这个方法需要返回图片的url
+        editor1.insertImage(url);
+    },
+    onError: function(err) {
+        // 上传出错，err是服务端返回的错误信息
+        editor1.alert(err);
+    }
+};
+
+
+editor1.create();
+
+var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.name = "John Doe";
+        $scope.getContent = function() {
+            $scope.name = editor1.$txt.html();
+        };
+    });
+
+
+
+
+
+</script>
+</body>
+</html>

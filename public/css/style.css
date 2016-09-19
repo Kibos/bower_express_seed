@@ -1,0 +1,18 @@
+body {
+
+  padding-bottom: 60px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.row{ margin-left: 0;margin-right: 0;}
+footer{
+  height:30px; width: 100%;
+  position:fixed;bottom:0px;left:0px;
+  padding: 8px;
+  background: #BEBEBE;
+  text-align:center;
+}
